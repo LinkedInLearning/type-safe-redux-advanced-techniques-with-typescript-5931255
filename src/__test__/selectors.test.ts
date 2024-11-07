@@ -9,8 +9,8 @@ describe('Selectors', () => {
   it('should select total items in the cart - selectCartTotalItems', () => {
     const cartState: CartState = {
       items: [
-        { id: 1, price: 100 },
-        { id: 2, price: 200 },
+        { id: 1, price: 100, quantity: 1 },
+        { id: 2, price: 200, quantity: 1 },
       ],
       totalPrice: 300,
     };
@@ -27,8 +27,8 @@ describe('Selectors', () => {
   it('should select total price of the cart - selectCartTotalPrice', () => {
     const cartState: CartState = {
       items: [
-        { id: 1, price: 100 },
-        { id: 2, price: 200 },
+        { id: 1, price: 100, quantity: 1 },
+        { id: 2, price: 200, quantity: 1 },
       ],
       totalPrice: 300,
     };

@@ -22,7 +22,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ id, title, price, desc
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ id, price }));
+    dispatch(addToCart({ id, price, quantity: 1 }));
   };
 
   return (
