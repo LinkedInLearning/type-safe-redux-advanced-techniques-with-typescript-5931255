@@ -13,3 +13,5 @@ export const selectExpensiveProducts = createSelector(
   [selectAllProducts],
   (products: Product[]) => products.filter((product: Product) => product.price > 1000)
 );
+
+export const selectCartTotalItems = (state: RootState) => state.cart.items.length;

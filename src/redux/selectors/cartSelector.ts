@@ -1,4 +1,14 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-export const selectCartTotalItems = (state: RootState) => state.cart.items.length;
-export const selectCartTotalPrice = (state: RootState) => state.cart.totalPrice;
+const selectCartItems = (state: RootState) => state.cart.items;
+
+export const selectCartTotalItems = createSelector(
+  [selectCartItems],
+  (items) => items.length
+);
+
+export const selectCartTotalPrice = createSelector(
+  [selectCartItems],
+  (items) => items.reduce((total, item) => total + item.price, 0)
+);

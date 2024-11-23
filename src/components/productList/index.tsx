@@ -1,22 +1,10 @@
-import React, { useEffect, FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../../redux/actions/productsActions';
-import { selectAllProducts, selectProductListStatus, selectExpensiveProducts } from '../../redux/selectors/productsSelector';
-import { AppDispatch } from '../../redux/store';
+import React from 'react';
+import { useProductList } from './hooks/useProductList';
 import { ProductDetails } from '../productDetails';
 import { ProductListContainer, LoadingMessage, ErrorMessage } from './styles';
 
-export const ProductList: FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector(selectAllProducts);
-  const status = useSelector(selectProductListStatus);
-  const expensiveProducts = useSelector(selectExpensiveProducts);
-
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchProducts());
-    }
-  }, [status, dispatch]);
+export const ProductList: React.FC = () => {
+  const { products, status, expensiveProducts } = useProductList();
 
   if (status === 'loading') {
     return <LoadingMessage>Loading...</LoadingMessage>;
@@ -41,7 +29,8 @@ export const ProductList: FC = () => {
           />
         ))}
       </ProductListContainer>
-      <h1>Expensive Products</h1>
+
+      <h2>Expensive Products</h2>
       <ProductListContainer>
         {expensiveProducts.map((product) => (
           <ProductDetails
